@@ -2,25 +2,23 @@ import { useState, useEffect } from 'react'
 // import React from 'react'
 
 import './App.css'
-// import axios from 'axios'
+import axios from 'axios'
 
 
  function App() {
     const [starWarsData, setStarWarsData] = useState({})
-    
-    // console.log("Component rendered")
-    
         
     // side effects
    useEffect(function() {
-    
-        fetch("https://swapi.dev/api/people/")
-            .then(res => res.json())
-            .then(data => setStarWarsData(data))
-            .then(data => console.log(data))
+        axios.get("https://swapi.dev/api/people/")
+        .then((response) => {
+          let result = response.data.results;
+          setStarWarsData(result)
+          console.log(result);
+      })
+     
 
-
-    })
+    },[])
    
     
     return (
