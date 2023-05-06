@@ -15,17 +15,9 @@ function App() {
     axios.get('https://swapi.dev/api/people').then((response) => {
       let result = response.data.results
       setStarWarsData(result)
-      console.log('page1', result)
+      console.log('resultNames', result)
     })
   }, [])
-
-  // useEffect(function () {
-  //   axios.get(`https://swapi.dev/api/people/?page=${count+ 1 || count -1}`).then((response) => {
-  //     let result = response
-  //     setStarWarsData(result)
-  //     console.log('result', result)
-  //   })
-  // }, [])
 
   // }
   // const firstTenCharacters = (StarWarsCahracterRequest, (result)=>{
@@ -36,15 +28,15 @@ function App() {
   // )
 
   return (
-    <div>
+    <>
       <TableHeader
-        starWarsData={starWarsData}
+        starWarsData={[starWarsData]}
         setStarWarsData={setStarWarsData}
       />
       {/* <DataTable starWarsData={setStarWarsData}/> */}
 
       <pre>{JSON.stringify(starWarsData, null, 2)}</pre>
-    </div>
+    </>
   )
 }
 

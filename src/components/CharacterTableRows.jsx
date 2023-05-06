@@ -1,18 +1,28 @@
 import PropTypes from 'prop-types'
 
+const CharacterTableRows = ({ starWarsData }) => {
+  // loop through an array of objects
 
-const CharacterTableRows = () => {
+  // for (const character of starWarsData) {
+  //   console.log(character, 'character')
+  // }
+  starWarsData.forEach((character, index) => console.log(character, index))
+
   return (
     <>
-      {/* {starWarsData.map((character, index) => (
-        <tr key={index}>
-          <td>{expense.date}</td>
-          <td>{expense.merchant}</td>
-          <td>{expense.paymentType}</td>
-          <td>{expense.amount}</td>
-        </tr>
-      ))} */}
-
+      {starWarsData.forEach(
+        (character, index) => (
+          <tr key={index}>
+            <td>{character.name}</td>
+            <td>{character.height}</td>
+            <td>{character.mass}</td>
+            <td>{character.birth_year}</td>
+            <td>{character.homeworld}</td>
+            <td>{character.species}</td>
+          </tr>
+        )
+        // console.log(character, index)
+      )}
     </>
   )
 }
