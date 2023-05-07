@@ -30,12 +30,12 @@ function App() {
   return (
     <>
       <TableHeader
-        starWarsData={[starWarsData]}
+        starWarsData={starWarsData}
         setStarWarsData={setStarWarsData}
       />
       {/* <DataTable starWarsData={setStarWarsData}/> */}
 
-      <pre>{JSON.stringify(starWarsData, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(starWarsData, null, 2)}</pre> */}
     </>
   )
 }
