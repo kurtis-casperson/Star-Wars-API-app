@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import CharacterTableRows from './CharacterTableRows'
 // import NavigationButtons from './NavigationButtons'
 
@@ -9,9 +8,9 @@ const TableHeader = ({ starWarsData }) => {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Birth date </th>
             <th>Height</th>
             <th>Mass</th>
+            <th>Birth date </th>
             <th>Homeworld</th>
             <th>Species</th>
           </tr>
@@ -25,5 +24,5 @@ const TableHeader = ({ starWarsData }) => {
     </>
   )
 }
-TableHeader.propTypes = { starWarsData: PropTypes.array.isRequired }
+
 export default TableHeader

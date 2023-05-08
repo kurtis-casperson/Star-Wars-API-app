@@ -10,22 +10,29 @@ function App() {
 
   // anytime state changes, the component will re-render
   // the endless loop happens because of the state changing. anytime state changes then the functions starts again.
+  // debugger
+  const characterData = async () => {
+    let peopleData = await axios.get('https://swapi.dev/api/people')
+    let resultsData = peopleData.data.results
+    console.log(resultsData)
 
+    for (let character of resultsData) {
+      let homeWorldData = await axios.get(character.homeworld)
+      character.homeworldName = homeWorldData.data.name
+      console.log(character.homeworld)
+    }
+
+    // for (let character of resultsData) {
+    //   let speciesData = await axios.get(character.species)
+    //   let speciesName = await speciesData
+    //   console.log(speciesName)
+    //   speciesName
+    // }
+    setStarWarsData(resultsData)
+  }
   useEffect(function () {
-    axios.get('https://swapi.dev/api/people').then((response) => {
-      let result = response.data.results
-      setStarWarsData(result)
-      console.log('resultNames', result)
-    })
+    characterData()
   }, [])
-
-  // }
-  // const firstTenCharacters = (StarWarsCahracterRequest, (result)=>{
-  //   // setStarWarsData(result.slice(0, 11))
-  //   console.log('1to10', result.slice(0, 11))
-
-  // }
-  // )
 
   return (
     <>
