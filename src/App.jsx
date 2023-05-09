@@ -14,20 +14,19 @@ function App() {
   const characterData = async () => {
     let peopleData = await axios.get('https://swapi.dev/api/people')
     let resultsData = peopleData.data.results
-    console.log(resultsData)
 
     for (let character of resultsData) {
       let homeWorldData = await axios.get(character.homeworld)
       character.homeworldName = homeWorldData.data.name
-      console.log(character.homeworld)
+
+      // threw me off because i didn't think the request would be bad if the first index was empty.
+      if (character.species.length !== 0) {
+        let speciesData = await axios.get(character.species)
+        character.species = speciesData.data.name
+      } else character.species = 'Human'
+      console.log(character.species)
     }
 
-    // for (let character of resultsData) {
-    //   let speciesData = await axios.get(character.species)
-    //   let speciesName = await speciesData
-    //   console.log(speciesName)
-    //   speciesName
-    // }
     setStarWarsData(resultsData)
   }
   useEffect(function () {
@@ -40,9 +39,6 @@ function App() {
         starWarsData={starWarsData}
         setStarWarsData={setStarWarsData}
       />
-      {/* <DataTable starWarsData={setStarWarsData}/> */}
-
-      {/* <pre>{JSON.stringify(starWarsData, null, 2)}</pre> */}
     </>
   )
 }
