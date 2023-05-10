@@ -39,9 +39,12 @@ function App() {
     setNextPage(nextPageData)
     setPrevPage(prevPageData)
   }
-  useEffect(function () {
-    characterData()
-  }, [])
+  useEffect(
+    function () {
+      characterData()
+    },
+    [homePageUrl]
+  )
 
   return (
     <>

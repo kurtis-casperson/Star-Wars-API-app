@@ -3,13 +3,19 @@ import { Button } from 'react-bootstrap'
 // import { characterData } from './src/App.jsx'
 
 const PaginationComponent = (props) => {
-  const { nextPage, setHomePageUrl, homePageUrl } = props
+  const { nextPage, prevPage, setHomePageUrl, homePageUrl } = props
   // save the page numebr in state .  then can add or subrtract from the state
   // get the page number
 
+  ////// to add page numbers.  Take the output data.count and divide by 10
+  //
+
   const clickNextButton = () => {
     setHomePageUrl(nextPage)
-    console.log('nextPage', nextPage, 'homePageUrl', homePageUrl)
+  }
+
+  const clickPrevButton = () => {
+    setHomePageUrl(prevPage)
   }
 
   //   useEffect(function () {
@@ -25,17 +31,17 @@ const PaginationComponent = (props) => {
           size="sm"
           onClick={() => clickNextButton()}
         >
-          {'>'}
+          Next Page
         </Button>
       </div>
-      {/* <Button
+      <Button
         type="button"
         variant="danger"
         size="sm"
-        onClick={() => nextPage()}
+        onClick={() => clickPrevButton()}
       >
-        Next Page
-      </Button> */}
+        Previous Page
+      </Button>
     </>
   )
 }
