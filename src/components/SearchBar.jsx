@@ -1,39 +1,41 @@
-// import  { useState, useEffect } from 'react'
-// import { Button } from 'react-bootstrap'
+import { useState, useEffect } from 'react'
+import { Button } from 'react-bootstrap'
 
-// const SearchBar = ({ setStarWarsData }) => {
-//   useEffect(() => {
-//     localStorage.setItem('formData', JSON.stringify(formData))
-//   }, [formData])
+const SearchBar = ({ setStarWarsData }) => {
+  
+  const [searchData, setSearchData] = useState([])
+  
+  const SearchResult = () => {
+    if (searchData === '' || null || undefined) return
+  }
 
-//   const emptySearchResult = (value) => {
-//     if (value === '' || null || undefined) {
-//       return { setStarWarsData }
-//     }
-//   }
+  let a = await axios.get('https://swapi.dev/api/people/?search=Boba')
+  console.log(a.data.results)
+  for (var i = 0; i < peopleData.data.results.length; i++) {
+    // console.log('peopleData', peopleData.data.results[i].name)
+    // myOptions.push(res.data[i].employee_name)
+  }
 
-//   function handleInputChange(event) {
-//     const { name, value } = event.target
+  useEffect(() => {
+    
+  }, [])
 
-//     setFormData((prevExpense) => ({ ...prevExpense, [name]: value }))
-//   }
+  return (
+    <>
+      <div className="search-bar">
+        <input
+          id="searchBar"
+          type="input"
+          placeholder="Search a character by name"
+          name="searchBar"
+          onChange={}
+        ></input>
+      </div>
+      <Button type="button" variant="info" size="sm" onClick={() => {}}>
+        Search
+      </Button>
+    </>
+  )
+}
 
-//   return (
-//     <>
-//       <div className="row-one">
-//         <input
-//           type="input"
-//           placeholder="Search a character name"
-//           name="searchBar"
-//           //   value
-//           onChange={handleInputChange}
-//         ></input>
-//       </div>
-//       <Button type="submit" variant="custom" size="lg" onClick={() => {}}>
-//         Add Expense
-//       </Button>
-//     </>
-//   )
-// }
-
-// export default SearchBar
+export default SearchBar
