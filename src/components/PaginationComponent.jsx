@@ -27,7 +27,7 @@ const PaginationComponent = (props) => {
       <div>
         <Button
           type="button"
-          variant="danger"
+          variant="info"
           size="sm"
           onClick={() => clickNextButton()}
         >
@@ -36,7 +36,7 @@ const PaginationComponent = (props) => {
       </div>
       <Button
         type="button"
-        variant="danger"
+        variant="dark"
         size="sm"
         onClick={() => clickPrevButton()}
       >
