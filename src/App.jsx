@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import './components/TableHeader.css'
 import axios from 'axios'
 import TableHeader from './components/TableHeader.jsx'
 import PaginationComponent from './components/PaginationComponent'
@@ -32,7 +33,6 @@ function App() {
         let speciesData = await axios.get(character.species)
         character.species = speciesData.data.name
       } else character.species = 'Human'
-      console.log(character.species)
     }
 
     setStarWarsData(resultsData)
