@@ -1,10 +1,11 @@
 import CharacterTableRows from './CharacterTableRows'
 // import NavigationButtons from './NavigationButtons'
+import { Table } from 'react-bootstrap'
 
 const TableHeader = ({ starWarsData }) => {
   return (
     <>
-      <table className="Expense-Table rounded-2">
+      <Table id="tableCharacterData" striped bordered hover variant="dark">
         <thead>
           <tr>
             <th>Name</th>
@@ -19,8 +20,7 @@ const TableHeader = ({ starWarsData }) => {
         <tbody>
           <CharacterTableRows starWarsData={starWarsData} />
         </tbody>
-      </table>
-      <div>{/* <NavigationButtons /> */}</div>
+      </Table>
     </>
   )
 }
