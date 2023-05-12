@@ -1,25 +1,27 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import './components/TableHeader.css'
+import './components/SearchBar.css'
+import './components/PaginationComponent.css'
+import './assets/original.avif'
 import axios from 'axios'
 import TableHeader from './components/TableHeader.jsx'
 import PaginationComponent from './components/PaginationComponent'
+import SearchBar from './components/SearchBar'
 
 function App() {
   const apiRequest = 'https://swapi.dev/api/people'
-  const [homePageUrl, setHomePageUrl] = useState(apiRequest)
+  const [requestUrl, setRequestUrl] = useState(apiRequest)
   const [starWarsData, setStarWarsData] = useState([])
+  const [searchQueryRequest, setSearchQueryRequest] = useState([])
+  const [searchInput, setSearchInput] = useState('')
   const [nextPage, setNextPage] = useState([])
   const [prevPage, setPrevPage] = useState(null)
   const [loading, setLoading] = useState(false)
 
-  // side effects
-
-  // anytime state changes, the component will re-render
-  // the endless loop happens because of the state changing. anytime state changes then the functions starts again.
-  // debugger
   const characterData = async () => {
-    let peopleData = await axios.get(homePageUrl)
+    setLoading(true)
+    let peopleData = await axios.get(requestUrl)
     let resultsData = peopleData.data.results
     let nextPageData = peopleData.data.next
     let prevPageData = peopleData.data.previous
@@ -28,7 +30,6 @@ function App() {
       let homeWorldData = await axios.get(character.homeworld)
       character.homeworldName = homeWorldData.data.name
 
-      // threw me off because i didn't think the request would be bad if the first index was empty.
       if (character.species.length !== 0) {
         let speciesData = await axios.get(character.species)
         character.species = speciesData.data.name
@@ -36,6 +37,7 @@ function App() {
     }
 
     setStarWarsData(resultsData)
+    setLoading(false)
     setNextPage(nextPageData)
     setPrevPage(prevPageData)
   }
@@ -43,23 +45,38 @@ function App() {
     function () {
       characterData()
     },
-    [homePageUrl]
+    [requestUrl]
   )
+
+  const wait = () => {
+    if (loading) {
+      return <h2>Loading Star Wars Data...</h2>
+    }
+  }
 
   return (
     <>
-      <TableHeader
-        starWarsData={starWarsData}
-        setStarWarsData={setStarWarsData}
-      />
-      <PaginationComponent
-        homePageUrl={homePageUrl}
-        setHomePageUrl={setHomePageUrl}
-        nextPage={nextPage}
-        setNextPage={setNextPage}
-        prevPage={prevPage}
-        setPrevPage={setPrevPage}
-      />
+      <h1 id="title">IN A GALAXY FAR, FAR AWAY...</h1>
+      <div className="app-body">
+        <SearchBar
+          setRequestUrl={setRequestUrl}
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
+          searchQueryRequest={searchQueryRequest}
+          setSearchQueryRequest={setSearchQueryRequest}
+        />
+        <TableHeader
+          loading={loading}
+          starWarsData={starWarsData}
+          setStarWarsData={setStarWarsData}
+        />
+        <div id="loadingText">{wait()}</div>
+        <PaginationComponent
+          setRequestUrl={setRequestUrl}
+          nextPage={nextPage}
+          prevPage={prevPage}
+        />
+      </div>
     </>
   )
 }
