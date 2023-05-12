@@ -1,39 +1,41 @@
-import { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap'
 
-const SearchBar = ({ setStarWarsData }) => {
-  
-  const [searchData, setSearchData] = useState([])
-  
-  const SearchResult = () => {
-    if (searchData === '' || null || undefined) return
-  }
+const SearchBar = (props) => {
+  const { setRequestUrl, searchInput, setSearchInput } = props
+  const handleInputSearch = (e) => {
+    setSearchInput(e.target.value)
 
-  let a = await axios.get('https://swapi.dev/api/people/?search=Boba')
-  console.log(a.data.results)
-  for (var i = 0; i < peopleData.data.results.length; i++) {
-    // console.log('peopleData', peopleData.data.results[i].name)
-    // myOptions.push(res.data[i].employee_name)
+    console.log(searchInput)
   }
-
-  useEffect(() => {
-    
-  }, [])
 
   return (
     <>
-      <div className="search-bar">
+      <div className="search-bar-container">
         <input
           id="searchBar"
           type="input"
-          placeholder="Search a character by name"
+          placeholder="Search by name"
           name="searchBar"
-          onChange={}
+          value={searchInput}
+          onChange={handleInputSearch}
         ></input>
+
+        <Button
+          id="searchButton"
+          type="button"
+          variant="info"
+          size="sm"
+          onClick={(e) => {
+            if (searchInput === '' || null || undefined)
+              return setRequestUrl('https://swapi.dev/api/people')
+            handleInputSearch(e)
+            setSearchInput('')
+            setRequestUrl(`https://swapi.dev/api/people/?search=${searchInput}`)
+          }}
+        >
+          Search
+        </Button>
       </div>
-      <Button type="button" variant="info" size="sm" onClick={() => {}}>
-        Search
-      </Button>
     </>
   )
 }
