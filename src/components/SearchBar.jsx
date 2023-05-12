@@ -4,8 +4,6 @@ const SearchBar = (props) => {
   const { setRequestUrl, searchInput, setSearchInput } = props
   const handleInputSearch = (e) => {
     setSearchInput(e.target.value)
-
-    console.log(searchInput)
   }
 
   return (
