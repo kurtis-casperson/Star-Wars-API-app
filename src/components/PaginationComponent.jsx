@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap'
 // import { characterData } from './src/App.jsx'
 
 const PaginationComponent = (props) => {
-  const { nextPage, prevPage, setHomePageUrl, homePageUrl } = props
+  const { nextPage, prevPage, setRequestUrl } = props
   // save the page numebr in state .  then can add or subrtract from the state
   // get the page number
 
@@ -11,37 +10,35 @@ const PaginationComponent = (props) => {
   //
 
   const clickNextButton = () => {
-    setHomePageUrl(nextPage)
+    setRequestUrl(nextPage)
   }
 
   const clickPrevButton = () => {
-    setHomePageUrl(prevPage)
+    setRequestUrl(prevPage)
   }
 
-  //   useEffect(function () {
-  //
-  //       })
-  //   }, [])
   return (
     <>
-      <div>
+      <div className="page-turn-buttons">
         <Button
+          id="prevButton"
           type="button"
-          variant="info"
+          variant="dark"
+          size="sm"
+          onClick={() => clickPrevButton()}
+        >
+          Previous Page
+        </Button>
+        <Button
+          id="nextButton"
+          type="button"
+          variant="dark"
           size="sm"
           onClick={() => clickNextButton()}
         >
           Next Page
         </Button>
       </div>
-      <Button
-        type="button"
-        variant="dark"
-        size="sm"
-        onClick={() => clickPrevButton()}
-      >
-        Previous Page
-      </Button>
     </>
   )
 }
