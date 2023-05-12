@@ -1,5 +1,4 @@
 import CharacterTableRows from './CharacterTableRows'
-// import NavigationButtons from './NavigationButtons'
 import { Table } from 'react-bootstrap'
 
 const TableHeader = ({ starWarsData }) => {
