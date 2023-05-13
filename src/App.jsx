@@ -56,7 +56,7 @@ function App() {
 
   return (
     <>
-      <h1 id="title">IN AN API FAR, FAR AWAY...</h1>
+      <h1 id="title">iN AN APi FAR, FAR AWAy...</h1>
       <div className="app-body">
         <SearchBar
           setRequestUrl={setRequestUrl}

@@ -10,10 +10,8 @@ body {
 
 #title {
   color: rgb(241, 193, 72);
-  font-weight: bold;
   font-size: 60px;
-  font-family: futura;
-  font-style: oblique;
+  font-family: 'Star Wars', sans-serif;
   letter-spacing: 10px;
 }
 
