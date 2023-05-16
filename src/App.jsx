@@ -10,7 +10,7 @@ import PaginationComponent from './components/PaginationComponent'
 import SearchBar from './components/SearchBar'
 
 function App() {
-  const apiRequest = 'https://swapi.dev/api/people'
+  const apiRequest = 'https://swapi.py4e.com/api/people/'
   const [requestUrl, setRequestUrl] = useState(apiRequest)
   const [starWarsData, setStarWarsData] = useState([])
   const [searchQueryRequest, setSearchQueryRequest] = useState([])
