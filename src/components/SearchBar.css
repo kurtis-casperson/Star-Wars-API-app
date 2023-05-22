@@ -20,3 +20,9 @@ textarea {
   width: 10%;
   background-color: rgb(223, 26, 26);
 }
+
+#clearButton {
+  width: 10%;
+  background-color: rgb(26, 62, 223);
+  margin-left: 10px;
+}
