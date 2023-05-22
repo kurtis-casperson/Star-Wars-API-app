@@ -19,34 +19,31 @@ function App() {
   const [prevPage, setPrevPage] = useState(null)
   const [loading, setLoading] = useState(false)
 
-  const characterData = async () => {
-    setLoading(true)
-    let peopleData = await axios.get(requestUrl)
-    let resultsData = peopleData.data.results
-    let nextPageData = peopleData.data.next
-    let prevPageData = peopleData.data.previous
+  useEffect(() => {
+    async function characterData() {
+      setLoading(true)
+      let peopleData = await axios.get(requestUrl)
+      let resultsData = peopleData.data.results
+      let nextPageData = peopleData.data.next
+      let prevPageData = peopleData.data.previous
 
-    for (let character of resultsData) {
-      let homeWorldData = await axios.get(character.homeworld)
-      character.homeworldName = homeWorldData.data.name
+      for (let character of resultsData) {
+        let homeWorldData = await axios.get(character.homeworld)
+        character.homeworldName = homeWorldData.data.name
 
-      if (character.species.length !== 0) {
-        let speciesData = await axios.get(character.species)
-        character.species = speciesData.data.name
-      } else character.species = 'Human'
+        if (character.species.length !== 0) {
+          let speciesData = await axios.get(character.species)
+          character.species = speciesData.data.name
+        } else character.species = 'Human'
+      }
+
+      setStarWarsData(resultsData)
+      setLoading(false)
+      setNextPage(nextPageData)
+      setPrevPage(prevPageData)
     }
-
-    setStarWarsData(resultsData)
-    setLoading(false)
-    setNextPage(nextPageData)
-    setPrevPage(prevPageData)
-  }
-  useEffect(
-    function () {
-      characterData()
-    },
-    [requestUrl]
-  )
+    characterData()
+  }, [requestUrl])
 
   const wait = () => {
     if (loading) {
@@ -57,6 +54,7 @@ function App() {
   return (
     <>
       <h1 id="title">iN AN APi FAR, FAR AWAy...</h1>
+      <h3 id="subTitle">Star Wars Character Search</h3>
       <div className="app-body">
         <SearchBar
           setRequestUrl={setRequestUrl}

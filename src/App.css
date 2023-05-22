@@ -15,6 +15,15 @@ body {
   letter-spacing: 10px;
 }
 
+#subTitle {
+  color: rgb(247, 233, 197);
+  font-size: 30px;
+  font-family: 'Star Wars', sans-serif;
+  letter-spacing: 5px;
+  margin-top: 20px;
+  text-shadow: 1x 1px 0 #ffffff;
+}
+
 #loadingText {
   justify-content: center;
   color: rgba(255, 255, 255, 0.95);
